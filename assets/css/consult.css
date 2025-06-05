@@ -1,0 +1,66 @@
+#consult-form .form-group {
+    margin-bottom: 18px; /* Было 8px, стало больше между строками */
+}
+
+#consult-form input,
+#consult-form textarea {
+    font-size: 17px;                /* Чуть больше */
+    font-weight: 400;               /* Можно 500, если хочешь прям жирнее */
+    line-height: 1.6;               /* Для textarea увеличит высоту строки */
+    border-radius: 7px;
+    border: 1.5px solid #fb992e;    /* Оранжевая рамка - лучше видно */
+    background: #161616;
+    color: #fff;
+    box-sizing: border-box;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+#consult-form input:focus,
+#consult-form textarea:focus {
+    outline: none;
+    border-color: #fb992e;
+    box-shadow: 0 0 0 1.5px #fb992e;
+    background: #181818;
+}
+
+#consult-form label {
+    font-size: 15px;
+    color: #fb992e;
+    font-weight: 400;
+    margin-bottom: 3px;
+    letter-spacing: 0.2px;
+}
+
+#consult-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* Кнопка */
+#consult-submit {
+    width: 100%;
+    padding: 16px 0;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 7px;
+    margin-top: 10px;
+    box-shadow: 0 1px 5px rgba(251,153,46,0.1);
+}
+
+/* Для мобильных - адаптируем */
+@media (max-width: 600px) {
+    #doc-section .work {
+        padding: 8px 3vw 0 3vw;
+    }
+    #consult-form input,
+    #consult-form textarea {
+        font-size: 16px;
+        padding: 12px 10px;
+        border-radius: 7px;
+    }
+    #consult-submit {
+        font-size: 16px;
+        padding: 15px 0;
+        border-radius: 7px;
+    }
+}

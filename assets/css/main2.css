@@ -1,0 +1,535 @@
+.perspective--modalview::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный */
+  z-index: 9; /* Ниже меню, но выше основного контента */
+  pointer-events: none; /* Чтобы клики проходили сквозь оверлей */
+}
+
+/* Убедитесь, что само меню имеет z-index выше */
+.outer-nav {
+  z-index: 10;
+}
+
+
+/* Main menu styles */
+.main-menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.main-menu-buttons button {
+  position: relative;
+  padding: 12px 17px 12px 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  width: 250px;
+  text-align: left;
+}
+
+.main-menu-buttons button svg {
+  position: relative;
+  left: 5px;
+  width: 15px;
+  fill: #fff;
+}
+
+/* Calculator section styles */
+
+
+
+/* Обновленные стили для формы создания документа */
+#doc-section .work {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+#doc-section .work h2 {
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+#doc-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#doc-section .work input[type="text"],
+#doc-section .work input[type="tel"],
+#doc-section .work select {
+  width: 100%;
+  padding: 12px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #555;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  transition: border-color 0.3s ease;
+}
+
+#doc-section .work input[type="text"]:focus,
+#doc-section .work input[type="tel"]:focus,
+#doc-section .work select:focus {
+  outline: none;
+  border-bottom-color: #fb992e;
+}
+
+#doc-section .work label {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  color: #fb992e;
+  font-size: 12px;
+  font-weight: 300;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Стиль для заполненных полей */
+#doc-section .work input:not(:placeholder-shown) + label,
+#doc-section .work select:valid + label {
+  top: -15px;
+  font-size: 12px;
+  color: #c4c4c4;
+}
+
+#doc-section .work select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 20px;
+  padding-right: 25px;
+}
+
+#doc-section .work button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #fb992e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+#doc-section .work button[type="submit"]:hover {
+  background-color: #fb992e;
+}
+
+
+
+
+
+/* Стили для секции отслеживания */
+#track-section .work {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+#track-section h1 {
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+#track-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#track-form label {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+#track-form input[type="text"] {
+  width: 100%;
+  padding: 12px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #555;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  transition: border-color 0.3s ease;
+}
+
+#track-form input[type="text"]:focus {
+  outline: none;
+  border-bottom-color: #fb992e;
+}
+
+#track-form button {
+  width: 100%;
+  padding: 15px;
+  background-color: #fb992e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+#track-form button:hover {
+  background-color: #fb992e;
+}
+
+#track-result {
+  margin-top: 30px;
+
+  padding: 20px;
+  background-color: rgba(95, 52, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+
+/* Анимация ссылок в главном меню */
+.intro--options > a {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.intro--options > a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fb992e;
+  transition: width 0.3s ease;
+}
+
+.intro--options > a:hover {
+  color: #fff;
+}
+
+.intro--options > a:hover::after {
+  width: 100%;
+}
+
+.intro--options > a:active {
+  transform: translateY(2px);
+  transition: transform 0.1s ease;
+}
+
+.intro--options h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.intro--options p {
+  color: #aaa;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.intro--options > a:hover h3,
+.intro--options > a:hover p {
+  color: #fff;
+}
+
+/* Стиль для раздела Главная */
+/* Стиль для раздела Главная */
+.section--is-active#home {
+  background-image: url("logo1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Фиксированный фон при прокрутке */
+}
+
+/* Затемнение фона для лучшей читаемости текста */
+.section--is-active#home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Темный полупрозрачный оверлей */
+  z-index: -1;
+}
+
+/* Стили для кнопок на главной странице */
+.intro--options > a {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 2px solid #fb992e;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: rgba(251, 153, 46, 0.1);
+}
+
+.intro--options > a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(251, 153, 46, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.intro--options > a:hover {
+  color: #fff;
+  background: rgba(251, 153, 46, 0.2);
+  box-shadow: 0 0 10px #fb992e, 0 0 20px #fb992e, 0 0 30px #fb992e;
+}
+
+.intro--options > a:hover::before {
+  left: 100%;
+}
+
+.intro--options > a h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.intro--options > a:hover h3 {
+  transform: scale(1.05);
+}
+
+/* Анимация свечения для кнопок */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #fb992e;
+  }
+  50% {
+    box-shadow: 0 0 20px #fb992e;
+  }
+  100% {
+    box-shadow: 0 0 5px #fb992e;
+  }
+}
+
+.intro--options > a {
+  animation: glow 3s infinite alternate;
+}
+.btn-border {
+  position: absolute;
+  display: block;
+}
+
+.btn-border:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fb992e);
+  animation: borderTop 2s linear infinite;
+}
+
+@keyframes borderTop {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+/* Стили для формы консультации */
+#doc-section .work {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+#consult-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#consult-form textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #555;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Rubik', sans-serif;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+#consult-form textarea:focus {
+  outline: none;
+  border-bottom-color: #fb992e;
+}
+
+#consult-result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(251, 153, 46, 0.1);
+  border: 1px solid #fb992e;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+}
+#consult-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: #fb992e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+#consult-submit:hover {
+  background-color: #e08a2a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(251, 153, 46, 0.4);
+}
+
+#consult-submit:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+/* Стили для кнопок очистки */
+.clear-input-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.clear-input-btn:hover {
+    color: #fb992e;
+}
+
+/* Позиционирование для полей с кнопками очистки */
+.form-group {
+    position: relative;
+}
+
+.form-group input {
+    padding-right: 30px !important;
+}
+
+/* Стили для кнопки "Не нашли подходящий код" */
+.not-found-btn {
+    display: block;
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: #fb992e;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.not-found-btn:hover {
+    color: #e08a2a;
+}
+
+
+@media (max-width: 600px) {
+  .product-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .form-input {
+    font-size: 16px;
+    padding: 12px;
+    height: 44px;
+  }
+  .clear-input-btn {
+    font-size: 24px;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
