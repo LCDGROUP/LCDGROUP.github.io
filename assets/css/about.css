@@ -12,6 +12,8 @@
   background-position: center;
   background-attachment: fixed;
   position: relative;
+  overflow-y: auto; /* Добавлено для разрешения скролла */
+  -webkit-overflow-scrolling: touch; /* Для плавного скролла на iOS */
 }
 
 #about-section::before {
@@ -35,6 +37,7 @@
   border-radius: 15px;
   border: 1px solid rgba(251, 153, 46, 0.3);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: visible; /* Убедимся, что контент не обрезается */
 }
 
 .about-title {
@@ -163,51 +166,6 @@
   transform: scale(1.1);
 }
 
-/* Адаптация для мобильных устройств */
-@media (max-width: 768px) {
-  .about-container {
-    padding: 20px;
-  }
-  
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-  
-  .about-title {
-    font-size: 28px;
-  }
-  
-  .contact-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .contact-btn {
-    width: 100%;
-  }
-  
-  .about-gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .about-container {
-    padding: 15px;
-  }
-  
-  .about-title {
-    font-size: 24px;
-  }
-  
-  .about-text {
-    font-size: 14px;
-  }
-  
-  .feature-card {
-    padding: 15px;
-  }
-}
 /* Стили для блока Instagram Reels */
 .instagram-reels {
   margin: 50px 0;
@@ -274,8 +232,39 @@
   text-decoration: underline;
 }
 
-/* Адаптация для мобильных */
+/* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
+  #about-section {
+    padding: 20px 10px;
+    background-attachment: scroll; /* Убираем фиксированный фон на мобильных */
+  }
+  
+  .about-container {
+    padding: 20px;
+  }
+  
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .about-title {
+    font-size: 28px;
+  }
+  
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-btn {
+    width: 100%;
+  }
+  
+  .about-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .reels-container {
     grid-template-columns: 1fr;
   }
@@ -283,5 +272,27 @@
   .reel-item {
     max-width: 300px;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 15px;
+  }
+  
+  .about-title {
+    font-size: 24px;
+  }
+  
+  .about-text {
+    font-size: 14px;
+  }
+  
+  .feature-card {
+    padding: 15px;
+  }
+  
+  .gallery-item {
+    height: 120px;
   }
 }
