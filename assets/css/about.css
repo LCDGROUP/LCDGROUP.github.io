@@ -6,14 +6,14 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background-image: url('assets/img/about-bg.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   position: relative;
-  overflow-y: auto; /* Добавлено для разрешения скролла */
-  -webkit-overflow-scrolling: touch; /* Для плавного скролла на iOS */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 #about-section::before {
@@ -31,13 +31,14 @@
   position: relative;
   z-index: 1;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 40px;
   background-color: rgba(30, 30, 30, 0.8);
   border-radius: 15px;
   border: 1px solid rgba(251, 153, 46, 0.3);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  overflow: visible; /* Убедимся, что контент не обрезается */
+  overflow: visible;
+  flex-grow: 1;
 }
 
 .about-title {
@@ -104,19 +105,22 @@
   color: #aaa;
 }
 
-/* Стили для контактных кнопок */
+/* Исправленные стили для контактных кнопок */
 .contact-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   margin-top: 40px;
   justify-content: center;
+  max-width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 .contact-btn {
   display: flex;
   align-items: center;
-  padding: 12px 25px;
+  padding: 12px 20px;
   background: linear-gradient(135deg, rgba(251, 153, 46, 0.2), rgba(251, 153, 46, 0.1));
   color: #fff;
   border: 1px solid #fb992e;
@@ -125,7 +129,12 @@
   font-weight: 600;
   transition: all 0.3s ease;
   min-width: 200px;
+  max-width: 100%;
+  box-sizing: border-box;
   justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .contact-btn:hover {
@@ -235,12 +244,19 @@
 /* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
   #about-section {
-    padding: 20px 10px;
-    background-attachment: scroll; /* Убираем фиксированный фон на мобильных */
+    padding: 0;
+    height: auto;
+    min-height: 100vh;
+    display: block;
   }
   
   .about-container {
-    padding: 20px;
+    padding: 20px 15px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
   }
   
   .about-content {
@@ -254,11 +270,15 @@
   
   .contact-buttons {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: 10px;
   }
   
   .contact-btn {
     width: 100%;
+    min-width: auto;
+    padding: 10px 15px;
+    font-size: 14px;
   }
   
   .about-gallery {
@@ -273,11 +293,18 @@
     max-width: 300px;
     margin: 0 auto;
   }
+  
+  @supports (-webkit-touch-callout: none) {
+    #about-section {
+      height: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 }
 
 @media (max-width: 480px) {
   .about-container {
-    padding: 15px;
+    padding: 15px 10px;
   }
   
   .about-title {
@@ -294,5 +321,9 @@
   
   .gallery-item {
     height: 120px;
+  }
+  
+  .contact-btn {
+    font-size: 13px;
   }
 }
