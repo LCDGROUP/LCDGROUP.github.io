@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HAOSGROUP</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="HTML5 website template">
+  <meta name="keywords" content="global, template, html, sass, jquery">
+  <meta name="author" content="Bucky Maler">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/main2.css">
+  <link rel="stylesheet" href="assets/css/cal.css">
+  <link rel="stylesheet" href="assets/css/consult.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+</head>
+<body>
+
+<!-- notification for small viewports and landscape oriented smartphones -->
+<!-- <div class="device-notification">
+  <a class="device-notification--logo" href="#0">
+    <img src="assets/img/logo.png" alt="Global">
+    <p>CHINADELIVERY</p>
+  </a>
+  <p class="device-notification--message">CHINADELIVERY компания для доставки товара из Китая.</p>
+</div> -->
+
+<div class="perspective effect-rotate-left">
+  <div class="container"><div class="outer-nav--return"></div>
+    <div id="viewport" class="l-viewport">
+      <div class="l-wrapper">
+        <header class="header">
+          <!-- <a class="header--logo" href="#0">
+            <img src="assets/img/logo.png" alt="Global">
+            <p>CHINADELIVERY</p>
+          </a> -->
+  
+          <div class="header--nav-toggle">
+            <span></span>
+          </div>
+        </header>
+        <!-- <nav class="l-side-nav">
+          <ul class="side-nav">
+            <li class="is-active"><span></span></li>
+            <li><span>Works</span></li>
+            <li><span>About</span></li>
+            <li><span>Contact</span></li>
+            <li><span>Hire us</span></li>
+          </ul>
+        </nav> -->
+        <ul class="l-main-content main-content">
+
+
+          <!-- главная секция с кнопками "КАЛЬКУЛЯТОР" "СОЗДАТЬ ДОКУМЕНТ" "О НАС" -->
+          <li class="l-section section section--is-active" id="home">
+            <div class="intro">
+              <div class="intro--banner">
+                <h1>Главная</h1>
+                <div class="intro--options">
+                  <div class="intro--options">
+                  <a href="#calc-section" onclick="scrollToSection('calc-section')">
+                    <span class="btn-border"></span>
+                    <h3>Калькулятор</h3>
+                  </a>
+                  <a href="#" onclick="openSection('doc-section')">
+                    <h3>Консультация</h3>
+                    <p>Оставьте заявку для связи со специалистом</p>
+                  </a>
+                  <a href="#" onclick="openSection('about-section')">
+                    <span class="btn-border"></span>
+                    <h3>О нас</h3>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- Конец главной страницы -->
+
+          <!-- Калькулятор -->
+          <li class="l-section section" id="calc-section" name="calc-section">
+            <div class="calculator" id="section-work">
+              <h2>Калькулятор доставки</h2>
+              <div class="calculator--form">
+                <form id="delivery-calculator">
+                  <!-- Маршрут -->
+                  <div class="form-section">
+                    <h3 class="section-title">Маршрут</h3>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="route-from">Откуда</label>
+                        <select id="route-from" class="form-select" required>
+                            <option value="">Выберите город</option>
+                            <option value="hefei">Хэфэй (Аньхой)</option>
+                            <option value="fuzhou">Фучжоу (Фуцзянь)</option>
+                            <option value="lanzhou">Ланьчжоу (Ганьсу)</option>
+                            <option value="guangzhou">Гуанчжоу (Гуандун)</option>
+                            <option value="guiyang">Гуйян (Гуйчжоу)</option>
+                            <option value="haikou">Хайкоу (Хайнань)</option>
+                            <option value="shijiazhuang">Шицзячжуан (Хэбэй)</option>
+                            <option value="harbin">Харбин (Хэйлунцзян)</option>
+                            <option value="zhengzhou">Чжэнчжоу (Хэнань)</option>
+                            <option value="wuhan">Ухань (Хубэй)</option>
+                            <option value="changsha">Чанша (Хунань)</option>
+                            <option value="nanjing">Нанкин (Цзянсу)</option>
+                            <option value="nanchang">Наньчан (Цзянси)</option>
+                            <option value="changchun">Чанчунь (Гирин / Цзилинь)</option>
+                            <option value="shenyang">Шэньян (Ляонин)</option>
+                            <option value="xining">Синин (Цинхай)</option>
+                            <option value="xian">Сиань (Шэньси)</option>
+                            <option value="jinan">Цзинань (Шаньдун)</option>
+                            <option value="taiyuan">Тайюань (Шаньси)</option>
+                            <option value="chengdu">Чэнду (Сычуань)</option>
+                            <option value="kunming">Куньмин (Юньнань)</option>
+                            <option value="hangzhou">Ханчжоу (Чжэцзян)</option>
+                            <option value="taipei">Тайбэй (Тайвань*)</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="route-to">Куда</label>
+                        <select id="route-to" class="form-select" required>
+                          <option value="">Выберите город</option>
+                          <option value="minsk">Минск, Беларусь</option>
+                          <option value="moscow">Москва, Россия</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <!-- Название товара -->
+                  <div class="form-section">
+                    <h3 class="section-title">Информация о товаре</h3>
+                    <div class="form-group">
+                    <label for="tnved-code">Код ТНВЭД или название товара</label>
+                    <input type="text" id="tnved-code" class="form-input" placeholder="Введите код или название">
+                    <div id="tnved-suggestions" class="suggestions-box"></div>
+                </div>
+            
+                  <!-- Параметры груза -->
+                  <div class="form-section">
+                    <h3 class="section-title">Параметры груза</h3>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="product-weight">Вес, кг</label>
+                        <input type="number" id="product-weight" class="form-input" min="1" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="product-volume">Объем, м³</label>
+                        <input type="number" id="product-volume" class="form-input" step="0.01" min="0.01" required>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="product-quantity">Кол-во единиц</label>
+                        <input type="number" id="product-quantity" class="form-input" min="1" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="product-cost">Общая стоимость</label>
+                        <div class="cost-input">
+                          <input type="number" id="product-cost" class="form-input" min="1" required>
+                          <select id="product-currency" class="form-select currency-select">
+                            <option value="usd">$</option>
+                            <option value="cny">¥</option>
+                            <option value="byn">Br</option>
+                            <option value="rub">₽</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <!-- Тип перевозки -->
+                  <div class="form-section">
+                    <h3 class="section-title">Тип перевозки</h3>
+                    <div class="transport-types">
+                      <div class="transport-option">
+                        <input type="radio" id="transport-type-ftl" name="transport-type" value="ftl" checked>
+                        <label for="transport-type-ftl">
+                          <span class="transport-icon">🚛</span>
+                          <span class="transport-title">FTL (полная загрузка)</span>
+                          <span class="transport-desc">До 26000 кг и 70 м³</span>
+                        </label>
+                      </div>
+                      <div class="transport-option">
+                        <input type="radio" id="transport-type-ltl" name="transport-type" value="ltl">
+                        <label for="transport-type-ltl">
+                          <span class="transport-icon">📦</span>
+                          <span class="transport-title">LTL (сборный груз)</span>
+                          <span class="transport-desc">Меньше 26000 кг и 70 м³</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <button type="submit" class="calculate-btn">Рассчитать онлайн</button>
+                </form>
+                
+                <!-- Блок результатов -->
+                <div id="calculation-result" class="result-section" style="display: none;">
+                  <!-- Здесь будет результат расчета -->
+                </div>
+              </div>
+            </div>
+            </li>
+          <!-- Конец калькулятора -->
+
+
+         <!-- Консультация -->
+          <li class="l-section section" id="doc-section">
+            <div class="work">
+              <h2>Запись на консультацию</h2>
+              <form id="consult-form">
+                <div class="form-group">
+                  <input type="text" id="consult-name" name="name" required autocomplete="off" />
+                  <label for="consult-name">Ваше имя</label>
+                </div>
+                
+                <div class="form-group">
+                  <input type="text" id="consult-telegram" name="telegram" required autocomplete="off" placeholder="@username" />
+                  <label for="consult-telegram">Ваш Telegram</label>
+                </div>
+                
+                <div class="form-group">
+                  <input type="tel" id="consult-phone" name="phone" required autocomplete="off" />
+                  <label for="consult-phone">Телефон</label>
+                </div>
+                
+                <div class="form-group">
+                  <textarea id="consult-message" name="message" autocomplete="off"></textarea>
+                  <label for="consult-message">Ваш вопрос (необязательно)</label>
+                </div>
+                
+                <button type="submit" id="consult-submit">Отправить заявку</button>
+              </form>
+              <div id="consult-result"></div>
+            </div>
+          </li>
+
+          <!-- Отслеживание -->
+          <li class="l-section section" id="track-section">
+            <div class="work">
+              <h1>Отслеживание посылки</h1>
+              <form id="track-form">
+                <label>Введите трек-номер:<br>
+                  <input type="text" name="track-number" required>
+                </label><br>
+                <button type="submit">Проверить</button>
+              </form>
+              <div id="track-result"></div>
+            </div>
+          </li>
+          <!-- конец Отслеживания -->
+
+          <li class="l-section section" id="about-section">
+              <div class="about-container">
+                <h2 class="about-title">О КОМПАНИИ HAOSGROUP</h2>
+                
+                <div class="about-content">
+                  <div>
+                    <p class="about-text">
+                      <span class="about-highlight"> МЫ LCD GROUP</span>  помогаем предпринимателям привозить товары с документами из Китая без посредников и переплат!
+                  ◾️Документооборот c более 17 странами
+                  ◾️Опыт поставок в Африку, Китай, Европу более 10 лет
+                  ◾️Логистика напрямую от перевозчиков в Китае
+                    </p>
+                    
+                    <div class="about-features">
+                      <div class="feature-card">
+                        <div class="feature-icon">🚛</div>
+                        <h3 class="feature-title">Быстрая доставка</h3>
+                        <p class="feature-text">Оптимальные сроки доставки от 15 дней</p>
+                      </div>
+                      
+                      <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3 class="feature-title">Надежность</h3>
+                        <p class="feature-text">Страхование груза и полное сопровождение</p>
+                      </div>
+                      
+                      <div class="feature-card">
+                        <div class="feature-icon">💼</div>
+                        <h3 class="feature-title">Опыт</h3>
+                        <p class="feature-text">Более 10 лет успешной работы на рынке</p>
+                      </div>
+                      
+                      <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3 class="feature-title">Упаковка</h3>
+                        <p class="feature-text">Профессиональная упаковка для сохранности груза</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <div class="about-gallery">
+                      <div class="gallery-item">
+                        <img src="assets/img/1.jpg" alt="">
+                      </div>
+                      <div class="gallery-item">
+                        <img src="assets/img/2.jpg" alt="">
+                      </div>
+                      <div class="gallery-item">
+                        <img src="assets/img/3.jpg" alt="">
+                      </div>
+                      <div class="gallery-item">
+                        <img src="assets/img/4.jpg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="instagram-reels">
+                  <h3 class="reels-title">Наши Reels</h3>
+                  <p>Посмотрите наши последние видео в Instagram</p>
+                  
+                  <div class="reels-container">
+                    <!-- Пример 1 -->
+                    <div class="reel-item">
+                      <iframe class="reel-iframe" 
+                              src="https://www.instagram.com/reel/DE6rUv7tzPN/" 
+                              allowfullscreen></iframe>
+                    </div>
+                    
+                    <!-- Пример 2 -->
+                    <div class="reel-item">
+                      <iframe class="reel-iframe" 
+                              src="https://www.instagram.com/reel/DHtFC2ctFEK/" 
+                              allowfullscreen></iframe>
+                    </div>
+                    
+                    <!-- Пример 3 -->
+                    <div class="reel-item">
+                      <iframe class="reel-iframe" 
+                              src="https://www.instagram.com/reel/DIb3jQSqtpJ/" 
+                              allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  
+                  <a href="https://www.instagram.com/lcd_group_/" 
+                    class="instagram-link" 
+                    target="_blank">
+                    Подписаться в Instagram
+                  </a>
+                </div>
+                <div class="contact-buttons">
+                  <a href="mailto:haosgroup@gmail.com" class="contact-btn">
+                    <i>✉️</i> LCDgroup@gmail.com
+                  </a>
+                  <a href="tel:+375295314144" class="contact-btn">
+                    <i>📞</i> +375 29 340 6666
+                  </a>
+                  <a href="https://t.me/Shencev" class="contact-btn">
+                    <i>📱</i> Telegram
+                  </a>
+                  <a href="viber://chat?number=%2B375293406666" class="contact-btn">
+                    <i>💬</i> Viber
+                  </a>
+                </div>
+              </div>
+            </li>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <ul class="outer-nav ">
+    <li class="is-active">ГЛАВНАЯ</li>
+    <li>КАЛЬКУЛЯТОР</li>
+    <li>КОНСУЛЬТАЦИЯ</li>
+    <li></li>
+    <li>О НАС</li>
+  </ul>
+</div>
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.1.6/pizzip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.21.1/docxtemplater.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+<script src="assets/js/functions-min.js"></script>
+<script src="assets/js/docs.js"></script>
+<script src="assets/js/dop.js"></script>
+<script src="assets/js/logistic-calc.js"></script> 
+<script src="assets/js/konsult.js"></script>
+
+</body>
+</html>
