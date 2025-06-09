@@ -326,4 +326,29 @@
   .contact-btn {
     font-size: 13px;
   }
+  .about-features-list {
+  margin: 25px 0;
+  padding-left: 0;
+}
+
+.feature-item {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #eee;
+}
+
+.feature-item:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #fb992e;
+  border-radius: 3px;
+  transform: rotate(45deg);
+}
 }
