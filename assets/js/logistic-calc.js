@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="result-item total">
                                 <span class="result-label">Для грузов свыше 26000 кг или 70 м³</span>
-                                <span class="result-value">Свяжитесь с менеджером для получения спеццены</span>
+                                <span class="result-value">Свяжитесь с менеджером для получения спеццены(Расчёт является примерным и не является офертой)</span>
                             </div>
                         </div>
                         <button id="contact-manager-btn" class="request-btn">Связаться с менеджером</button>
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="result-item total">
                                 <span class="result-label">Для грузов свыше 26000 кг или 70 м³</span>
-                                <span class="result-value">Свяжитесь с менеджером для получения спеццены</span>
+                                <span class="result-value">Свяжитесь с менеджером для получения спеццены(Расчёт является примерным и не является офертой)</span>
                             </div>
                         </div>
                         <button id="contact-manager-btn" class="request-btn">Связаться с менеджером</button>
@@ -276,6 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="result-label">Стоимость единицы товара:</span>
                             <span class="result-value">${unitCost.toFixed(2)} $</span>
                         </div>
+                        <div class="result-footnote">*Расчёт является примерным и не является офертой</div>
                     </div>
                     <button id="send-request-btn" class="request-btn">Отправить заявку</button>
                 `, false);
@@ -296,7 +297,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
             }
 
-            // Находим ставку по плотности для LTL
+            // Проверка для LTL с весом до 200 кг и объемом до 1.5 м³
+            if (weight <= 200 && volume <= 1.5) {
+                return {
+                    deliveryCost: 500,
+                    deliveryRate: weight ? 500 / weight : 0
+                };
+            }
+
+            // Находим ставку по плотности для остальных случаев LTL
             let deliveryRate = 0.35; // значение по умолчанию
             for (const { minDensity, rate } of densityRates) {
                 if (density >= minDensity) {
