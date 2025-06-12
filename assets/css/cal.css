@@ -803,3 +803,9 @@
     border-radius: 0 0 4px 4px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
+.result-footnote {
+  font-size: 12px;
+  opacity: 0.7;
+  text-align: center;
+  margin-top: 10px;
+}
