@@ -1,66 +1,76 @@
 #consult-form .form-group {
-    margin-bottom: 18px; /* Было 8px, стало больше между строками */
+    margin-bottom: 1.125rem; /* 18px в rem */
 }
 
 #consult-form input,
 #consult-form textarea {
-    font-size: 17px;                /* Чуть больше */
-    font-weight: 400;               /* Можно 500, если хочешь прям жирнее */
-    line-height: 1.6;               /* Для textarea увеличит высоту строки */
-    border-radius: 7px;
-    border: 1.5px solid #fb992e;    /* Оранжевая рамка - лучше видно */
+    font-size: 1.0625rem; /* 17px */
+    font-weight: 400;
+    line-height: 1.6;
+    border-radius: 0.4375rem; /* 7px */
+    border: 0.09375rem solid #fb992e; /* 1.5px */
     background: #161616;
     color: #fff;
     box-sizing: border-box;
-    transition: border 0.2s, box-shadow 0.2s;
+    transition: all 0.2s ease;
+    width: 100%;
+    padding: 0.75rem;
 }
 
 #consult-form input:focus,
 #consult-form textarea:focus {
     outline: none;
     border-color: #fb992e;
-    box-shadow: 0 0 0 1.5px #fb992e;
+    box-shadow: 0 0 0 0.09375rem #fb992e; /* 1.5px */
     background: #181818;
 }
 
 #consult-form label {
-    font-size: 15px;
+    font-size: 0.9375rem; /* 15px */
     color: #fb992e;
     font-weight: 400;
-    margin-bottom: 3px;
-    letter-spacing: 0.2px;
+    margin-bottom: 0.1875rem; /* 3px */
+    letter-spacing: 0.0125rem; /* 0.2px */
+    display: block;
 }
 
 #consult-form textarea {
-    min-height: 90px;
+    min-height: 5.625rem; /* 90px */
     resize: vertical;
 }
 
-/* Кнопка */
 #consult-submit {
     width: 100%;
-    padding: 16px 0;
-    font-size: 17px;
+    padding: 1rem 0;
+    font-size: 1.0625rem; /* 17px */
     font-weight: 600;
-    border-radius: 7px;
-    margin-top: 10px;
-    box-shadow: 0 1px 5px rgba(251,153,46,0.1);
+    border-radius: 0.4375rem; /* 7px */
+    margin-top: 0.625rem; /* 10px */
+    background: #fb992e;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
-/* Для мобильных - адаптируем */
-@media (max-width: 600px) {
+#consult-submit:hover {
+    background: #e68a29;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 37.5rem) { /* 600px */
     #doc-section .work {
-        padding: 8px 3vw 0 3vw;
+        padding: 0.5rem 3vw 0 3vw;
     }
+    
     #consult-form input,
     #consult-form textarea {
-        font-size: 16px;
-        padding: 12px 10px;
-        border-radius: 7px;
+        font-size: 1rem; /* 16px */
+        padding: 0.75rem 0.625rem; /* 12px 10px */
     }
+    
     #consult-submit {
-        font-size: 16px;
-        padding: 15px 0;
-        border-radius: 7px;
+        font-size: 1rem;
+        padding: 0.9375rem 0; /* 15px */
     }
 }
