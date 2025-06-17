@@ -1,76 +1,125 @@
+#consult-form {
+  /* Фиксируем viewport для телеграма */
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 #consult-form .form-group {
-    margin-bottom: 1.125rem; /* 18px в rem */
+  margin-bottom: 1.125rem;
 }
 
 #consult-form input,
 #consult-form textarea {
-    font-size: 1.0625rem; /* 17px */
-    font-weight: 400;
-    line-height: 1.6;
-    border-radius: 0.4375rem; /* 7px */
-    border: 0.09375rem solid #fb992e; /* 1.5px */
-    background: #161616;
-    color: #fff;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-    width: 100%;
-    padding: 0.75rem;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  border-radius: 0.4375rem;
+  border: 0.09375rem solid #fb992e;
+  background: #161616;
+  color: #fff;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  width: 100%;
+  padding: 0.75rem;
+  /* Отключаем зум при фокусе на iOS */
+  font-size: 16px; /* Фикс для iOS */
+}
+
+/* Фикс для Safari, чтобы не зумило */
+@media screen and (max-width: 767px) {
+  #consult-form input,
+  #consult-form textarea {
+    font-size: 16px !important;
+  }
 }
 
 #consult-form input:focus,
 #consult-form textarea:focus {
-    outline: none;
-    border-color: #fb992e;
-    box-shadow: 0 0 0 0.09375rem #fb992e; /* 1.5px */
-    background: #181818;
+  outline: none;
+  border-color: #fb992e;
+  box-shadow: 0 0 0 0.09375rem #fb992e;
+  background: #181818;
+  /* Отключаем преобразование масштаба */
+  transform: scale(1);
 }
 
 #consult-form label {
-    font-size: 0.9375rem; /* 15px */
-    color: #fb992e;
-    font-weight: 400;
-    margin-bottom: 0.1875rem; /* 3px */
-    letter-spacing: 0.0125rem; /* 0.2px */
-    display: block;
+  font-size: 0.9375rem;
+  color: #fb992e;
+  font-weight: 400;
+  margin-bottom: 0.1875rem;
+  letter-spacing: 0.0125rem;
+  display: block;
 }
 
 #consult-form textarea {
-    min-height: 5.625rem; /* 90px */
-    resize: vertical;
+  min-height: 5.625rem;
+  resize: vertical;
+  /* Фикс для скролла на iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 #consult-submit {
-    width: 100%;
-    padding: 1rem 0;
-    font-size: 1.0625rem; /* 17px */
-    font-weight: 600;
-    border-radius: 0.4375rem; /* 7px */
-    margin-top: 0.625rem; /* 10px */
-    background: #fb992e;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  border-radius: 0.4375rem;
+  margin-top: 0.625rem;
+  background: #fb992e;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  /* Отключаем тач-эффекты */
+  -webkit-tap-highlight-color: transparent;
+  /* Фикс для iOS */
+  position: relative;
 }
 
 #consult-submit:hover {
-    background: #e68a29;
+  background: #e68a29;
 }
 
-/* Адаптация для мобильных */
-@media (max-width: 37.5rem) { /* 600px */
-    #doc-section .work {
-        padding: 0.5rem 3vw 0 3vw;
-    }
-    
-    #consult-form input,
-    #consult-form textarea {
-        font-size: 1rem; /* 16px */
-        padding: 0.75rem 0.625rem; /* 12px 10px */
-    }
-    
-    #consult-submit {
-        font-size: 1rem;
-        padding: 0.9375rem 0; /* 15px */
-    }
+/* Фиксы для мобильных устройств */
+@media (max-width: 37.5rem) {
+  #doc-section .work {
+    padding: 0.5rem 3vw 0 3vw;
+    /* Фиксируем высоту */
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  #consult-form {
+    /* Отключаем скролл у формы, если он есть у контейнера */
+    overflow-y: visible;
+  }
+  
+  #consult-form input,
+  #consult-form textarea {
+    font-size: 16px !important; /* Важно для iOS */
+    padding: 0.75rem 0.625rem;
+    /* Отключаем масштабирование */
+    transform: scale(1);
+  }
+  
+  #consult-submit {
+    font-size: 1rem;
+    padding: 0.9375rem 0;
+  }
+}
+
+/* Дополнительные фиксы для iOS */
+@supports (-webkit-touch-callout: none) {
+  #consult-form {
+    /* Фикс для скролла на iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  #consult-form input,
+  #consult-form textarea {
+    /* Фикс для задержки фокуса на iOS */
+    transform: translateZ(0);
+  }
 }
