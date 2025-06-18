@@ -4,6 +4,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const consultForm = document.getElementById('consult-form');
     if (!consultForm) return;
 
+    // Инициализация Telegram Web App
+    const tgWebApp = window.Telegram?.WebApp;
+    if (tgWebApp) {
+        tgWebApp.expand(); // Развернуть на весь экран
+        tgWebApp.enableClosingConfirmation(); // Подтверждение закрытия
+        
+        // Настройка кнопки отправки
+        const submitBtn = document.getElementById('consult-submit');
+        submitBtn.style.backgroundColor = tgWebApp.themeParams.button_color || '#fb992e';
+        submitBtn.style.color = tgWebApp.themeParams.button_text_color || '#000';
+    }
+
     consultForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
@@ -11,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const originalBtnText = submitBtn.textContent;
         submitBtn.textContent = 'Отправка...';
         submitBtn.disabled = true;
+
+        // Закрываем клавиатуру перед отправкой
+        if (tgWebApp) {
+            tgWebApp.HapticFeedback.impactOccurred('light');
+            tgWebApp.closeKeyboard();
+        }
 
         const name = document.getElementById('consult-name').value.trim();
         let telegram = document.getElementById('consult-telegram').value.trim();
@@ -25,14 +43,28 @@ document.addEventListener('DOMContentLoaded', function () {
             await sendConsultationRequest(name, telegram, phone, message);
             showConsultResult('✅ Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.', true);
             consultForm.reset();
+            
+            // Закрываем веб-приложение после успешной отправки
+            if (tgWebApp) {
+                setTimeout(() => tgWebApp.close(), 1500);
+            }
         } catch (error) {
             console.error('Ошибка отправки:', error);
             showConsultResult(`❌ Ошибка при отправке: ${error.message}`, false);
+            
+            // Показываем клавиатуру снова при ошибке
+            if (tgWebApp && document.activeElement) {
+                setTimeout(() => {
+                    document.activeElement.blur();
+                    document.activeElement.focus();
+                }, 300);
+            }
         } finally {
             submitBtn.textContent = originalBtnText;
             submitBtn.disabled = false;
         }
     });
+
 
     async function sendConsultationRequest(name, telegram, phone, message) {
         const botToken = '7655942797:AAE99nRRdxePbzfuUNzlO92P3mclpfOnLbM';
