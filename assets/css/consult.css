@@ -1,125 +1,110 @@
+/* Фиксы для Telegram Web App */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: auto;
+}
+
 #consult-form {
-  /* Фиксируем viewport для телеграма */
-  max-height: 100vh;
+  height: 100%;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 #consult-form .form-group {
-  margin-bottom: 1.125rem;
+  margin-bottom: 18px;
+  position: relative;
 }
 
 #consult-form input,
 #consult-form textarea {
-  font-size: 1.0625rem;
+  font-size: 16px !important; /* Фиксированный размер для iOS */
   font-weight: 400;
   line-height: 1.6;
-  border-radius: 0.4375rem;
-  border: 0.09375rem solid #fb992e;
+  border-radius: 7px;
+  border: 1.5px solid #fb992e;
   background: #161616;
   color: #fff;
   box-sizing: border-box;
-  transition: all 0.2s ease;
   width: 100%;
-  padding: 0.75rem;
-  /* Отключаем зум при фокусе на iOS */
-  font-size: 16px; /* Фикс для iOS */
-}
-
-/* Фикс для Safari, чтобы не зумило */
-@media screen and (max-width: 767px) {
-  #consult-form input,
-  #consult-form textarea {
-    font-size: 16px !important;
-  }
+  padding: 12px;
+  -webkit-appearance: none;
+  transform: translateZ(0); /* Фикс для производительности */
 }
 
 #consult-form input:focus,
 #consult-form textarea:focus {
   outline: none;
   border-color: #fb992e;
-  box-shadow: 0 0 0 0.09375rem #fb992e;
+  box-shadow: 0 0 0 1.5px #fb992e;
   background: #181818;
-  /* Отключаем преобразование масштаба */
-  transform: scale(1);
 }
 
 #consult-form label {
-  font-size: 0.9375rem;
+  font-size: 15px;
   color: #fb992e;
   font-weight: 400;
-  margin-bottom: 0.1875rem;
-  letter-spacing: 0.0125rem;
+  margin-bottom: 3px;
+  letter-spacing: 0.2px;
   display: block;
 }
 
 #consult-form textarea {
-  min-height: 5.625rem;
+  min-height: 90px;
   resize: vertical;
-  /* Фикс для скролла на iOS */
-  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
 }
 
 #consult-submit {
   width: 100%;
-  padding: 1rem 0;
-  font-size: 1.0625rem;
+  padding: 16px 0;
+  font-size: 17px;
   font-weight: 600;
-  border-radius: 0.4375rem;
-  margin-top: 0.625rem;
+  border-radius: 7px;
+  margin-top: 10px;
   background: #fb992e;
   color: #000;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease;
-  /* Отключаем тач-эффекты */
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
   -webkit-tap-highlight-color: transparent;
-  /* Фикс для iOS */
-  position: relative;
 }
 
-#consult-submit:hover {
-  background: #e68a29;
-}
-
-/* Фиксы для мобильных устройств */
-@media (max-width: 37.5rem) {
+/* Адаптация для мобильных */
+@media (max-width: 600px) {
   #doc-section .work {
-    padding: 0.5rem 3vw 0 3vw;
-    /* Фиксируем высоту */
+    padding: 8px 3vw 0 3vw;
     height: 100vh;
     overflow-y: auto;
   }
-  
+
   #consult-form {
-    /* Отключаем скролл у формы, если он есть у контейнера */
-    overflow-y: visible;
+    padding-bottom: env(keyboard-height, 50vh);
   }
-  
-  #consult-form input,
-  #consult-form textarea {
-    font-size: 16px !important; /* Важно для iOS */
-    padding: 0.75rem 0.625rem;
-    /* Отключаем масштабирование */
-    transform: scale(1);
-  }
-  
+
   #consult-submit {
-    font-size: 1rem;
-    padding: 0.9375rem 0;
+    position: fixed;
+    bottom: env(keyboard-height, 50vh);
+    left: 3vw;
+    right: 3vw;
+    width: auto;
+    margin: 10px 0;
   }
 }
 
-/* Дополнительные фиксы для iOS */
+/* iOS специфичные фиксы */
 @supports (-webkit-touch-callout: none) {
   #consult-form {
-    /* Фикс для скролла на iOS */
-    -webkit-overflow-scrolling: touch;
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
   }
   
-  #consult-form input,
-  #consult-form textarea {
-    /* Фикс для задержки фокуса на iOS */
-    transform: translateZ(0);
+  #consult-submit {
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
   }
 }
