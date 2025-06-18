@@ -389,6 +389,33 @@
 <script src="assets/js/dop.js"></script>
 <script src="assets/js/logistic-calc.js"></script> 
 <script src="assets/js/konsult.js"></script>
+<script>
+// Фикс для клавиатуры в Telegram Web App
+if (window.Telegram?.WebApp) {
+  const form = document.getElementById('consult-form');
+  
+  Telegram.WebApp.onEvent('viewportChanged', (data) => {
+    if (data.is_state_stable) {
+      const submitBtn = document.getElementById('consult-submit');
+      if (data.is_expanded) {
+        // Клавиатура открыта
+        submitBtn.style.position = 'fixed';
+        submitBtn.style.bottom = 'env(keyboard-height, 50vh)';
+      } else {
+        // Клавиатура закрыта
+        submitBtn.style.position = 'sticky';
+        submitBtn.style.bottom = '0';
+      }
+    }
+  });
+  
+  // Настройка основной кнопки
+  Telegram.WebApp.MainButton
+    .setText('Отправить заявку')
+    .onClick(() => document.getElementById('consult-form').requestSubmit())
+    .show();
+}
+</script>
 
 </body>
 </html>
