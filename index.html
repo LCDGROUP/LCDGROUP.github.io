@@ -209,26 +209,28 @@
             <div class="work">
               <h2>Запись на консультацию</h2>
               <form id="consult-form">
+                <br />
+                <br />
                 <div class="form-group">
-                  <input type="text" id="consult-name" name="name" required autocomplete="off" />
+                  <input type="text" id="consult-name" name="name" required autocomplete="off" placeholder="Ваше имя...."/>
                   <label for="consult-name">Ваше имя</label>
                 </div>
-                
+
                 <div class="form-group">
                   <input type="text" id="consult-telegram" name="telegram" required autocomplete="off" placeholder="@username" />
                   <label for="consult-telegram">Ваш Telegram</label>
                 </div>
-                
+
                 <div class="form-group">
-                  <input type="tel" id="consult-phone" name="phone" required autocomplete="off" />
+                  <input type="tel" id="consult-phone" name="phone" required autocomplete="off" placeholder="Ваш телефон...." />
                   <label for="consult-phone">Телефон</label>
                 </div>
-                
+
                 <div class="form-group">
-                  <textarea id="consult-message" name="message" autocomplete="off"></textarea>
+                  <textarea id="consult-message" name="message" autocomplete="off" placeholder="Ваш вопрос...."></textarea>
                   <label for="consult-message">Ваш вопрос (необязательно)</label>
                 </div>
-                
+
                 <button type="submit" id="consult-submit">Отправить заявку</button>
               </form>
               <div id="consult-result"></div>
