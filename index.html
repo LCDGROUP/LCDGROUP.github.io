@@ -58,9 +58,9 @@
                 <h1>Главная</h1>
                 <div class="intro--options">
                   <div class="intro--options">
-                  <a href="https://t.me/APP_LCD_Group_bot" id="btn-tnved" target="_blank">
-                    <h3>Подбор кода ТН ВЭД</h3>
-                    <p>Найти правильный код для вашего товара</p>
+                  <a href="#" id="btn-tnved" onclick="openTnvedBot(event)">
+                      <h3>Подбор кода ТН ВЭД</h3>
+                      <p>Найти правильный код для вашего товара</p>
                   </a>  
                   <a href="#calc-section" onclick="scrollToSection('calc-section')">
                     <span class="btn-border"></span>
@@ -428,6 +428,35 @@ if (window.Telegram?.WebApp) {
     .show();
 }
 </script>
+
+<script>
+function openTnvedBot(event) {
+    event.preventDefault();
+    
+    const botUsername = 'APP_LCD_Group_bot';
+    const startParam = 'tnved';
+    
+    const deepLink = `tg://resolve?domain=${botUsername}&start=${startParam}`;
+    const webLink = `https://t.me/${botUsername}?start=${startParam}`;
+    const intentLink = `intent://resolve?domain=${botUsername}&start=${startParam}#Intent;package=org.telegram.messenger;scheme=tg;end;`;
+    
+    if (window.Telegram?.WebApp) {
+        Telegram.WebApp.openTelegramLink(deepLink);
+    } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.location.href = deepLink;
+        setTimeout(() => {
+            window.location.href = webLink;
+        }, 500);
+    } else if (/Android/i.test(navigator.userAgent)) {
+        window.location.href = intentLink;
+        setTimeout(() => {
+            window.location.href = webLink;
+        }, 500);
+    } else {
+        window.open(webLink, '_blank');
+    }
+}
+</script>  
 
 </body>
 </html>
