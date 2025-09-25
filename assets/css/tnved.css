@@ -1,0 +1,34 @@
+<style>
+.bot-suggestion {
+  margin-top: 15px;
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.bot-text {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.telegram-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #0088cc, #00a2ff);
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,136,204,0.2);
+}
+
+.telegram-btn:hover {
+  background: linear-gradient(135deg, #0077b3, #0088cc);
+  box-shadow: 0 4px 8px rgba(0,136,204,0.3);
+  transform: translateY(-1px);
+}
+</style>
