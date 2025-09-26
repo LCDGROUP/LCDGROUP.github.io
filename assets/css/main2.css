@@ -233,54 +233,77 @@
 }
 
 /* Анимация ссылок в главном меню */
-.intro--options > a {
-  position: relative;
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
+
+.intro--options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-.intro--options > a::after {
+.intro--options > a {
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+  padding: 25px;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #fb992e;
+  border-radius: 12px;
+  background: rgba(251, 153, 46, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  text-align: center;
+}
+
+.intro--options > a::before {
   content: '';
   position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #fb992e;
-  transition: width 0.3s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(251, 153, 46, 0.4), transparent);
+  transition: 0.5s;
 }
 
 .intro--options > a:hover {
-  color: #fff;
+  background: rgba(251, 153, 46, 0.2);
+  box-shadow: 0 0 10px #fb992e, 0 0 20px #fb992e, 0 0 30px #fb992e;
+  transform: translateY(-5px);
 }
 
-.intro--options > a:hover::after {
-  width: 100%;
-}
-
-.intro--options > a:active {
-  transform: translateY(2px);
-  transition: transform 0.1s ease;
+.intro--options > a:hover::before {
+  left: 100%;
 }
 
 .intro--options h3 {
-  font-size: 16px;
+  font-size: 18px;
   text-transform: uppercase;
-  margin-bottom: 5px;
-  transition: color 0.3s ease;
+  margin: 0 0 10px 0;
+  color: #fff;
+  line-height: 1.2;
+  word-wrap: break-word;
 }
 
 .intro--options p {
   color: #aaa;
   font-size: 14px;
-  transition: color 0.3s ease;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .intro--options > a:hover h3,
 .intro--options > a:hover p {
   color: #fff;
 }
+
 
 /* Стиль для раздела Главная */
 /* Стиль для раздела Главная */
@@ -305,43 +328,6 @@
 }
 
 /* Стили для кнопок на главной странице */
-.intro--options > a {
-  position: relative;
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 10px;
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 1px;
-  border: 2px solid #fb992e;
-  border-radius: 4px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: rgba(251, 153, 46, 0.1);
-}
-
-.intro--options > a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(251, 153, 46, 0.4), transparent);
-  transition: 0.5s;
-}
-
-.intro--options > a:hover {
-  color: #fff;
-  background: rgba(251, 153, 46, 0.2);
-  box-shadow: 0 0 10px #fb992e, 0 0 20px #fb992e, 0 0 30px #fb992e;
-}
-
-.intro--options > a:hover::before {
-  left: 100%;
-}
 
 .intro--options > a h3 {
   position: relative;
@@ -368,9 +354,6 @@
   }
 }
 
-.intro--options > a {
-  animation: glow 3s infinite alternate;
-}
 .btn-border {
   position: absolute;
   display: block;
@@ -507,6 +490,38 @@
 
 .not-found-btn:hover {
     color: #e08a2a;
+}
+
+@media (max-width: 768px) {
+  .intro--options {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    gap: 15px;
+  }
+
+  .intro--options > a {
+    min-height: 100px;
+    padding: 20px;
+  }
+
+  .intro--options h3 {
+    font-size: 16px;
+  }
+
+  .intro--options p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro--options {
+    padding: 0 15px;
+  }
+
+  .intro--options > a {
+    min-height: 90px;
+    padding: 15px;
+  }
 }
 
 
