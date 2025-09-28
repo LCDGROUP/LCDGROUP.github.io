@@ -602,3 +602,74 @@
         margin-bottom: 20px !important;
     }
 }
+
+/* Мобильная версия: экраны до 768px */
+@media (max-width: 768px) {
+  .intro--banner {
+    padding: 8px;
+    transform: scale(0.7); /* уменьшаем весь блок чуть-чуть */
+  }
+
+  .intro--banner h1 {
+    font-size: 18px;
+  }
+
+  .intro--options a {
+    padding: 8px 10px;
+  }
+
+  .intro--options a h3 {
+    font-size: 14px;
+  }
+
+  .intro--options a p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro--banner {
+    padding: 4px;
+    transform: scale(0.7); /* было 0.8, уменьшили ещё сильнее */
+  }
+
+  .intro--banner h1 {
+    font-size: 18px; /* было 22px */
+  }
+
+  .intro--options {
+    display: grid;
+    grid-template-columns: 1fr; /* одна колонка */
+    gap: 4px; /* меньше расстояние между ссылками */
+  }
+
+  .intro--options a {
+    padding: 4px 6px; /* компактные кнопки */
+  }
+
+  .intro--options a h3 {
+    font-size: 13px; /* было 14px */
+  }
+
+  .intro--options a p {
+    font-size: 11px; /* было 12px */
+  }
+}
+
+/* Стили для секций */
+.l-section.section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.l-section.section--is-active {
+    display: block;
+    opacity: 1;
+}
+
+/* Стили для активного состояния навигации */
+.outer-nav li.is-active a {
+    color: #ff0000 !important;
+    font-weight: bold;
+}
