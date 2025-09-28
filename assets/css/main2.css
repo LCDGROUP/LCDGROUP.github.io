@@ -673,3 +673,250 @@
     color: #ff0000 !important;
     font-weight: bold;
 }
+
+/*==============================================================*/
+/* Стили для бокового меню */
+.outer-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(40, 40, 40, 0.98) 100%);
+  backdrop-filter: blur(10px);
+  padding: 100px 40px 40px;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 1px solid rgba(251, 153, 46, 0.3);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.outer-nav.is-vis {
+  transform: translateX(0);
+}
+
+.outer-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.outer-nav li {
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.4s ease;
+}
+
+.outer-nav.is-vis li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Задержка появления для каждого пункта меню */
+.outer-nav.is-vis li:nth-child(1) { transition-delay: 0.1s; }
+.outer-nav.is-vis li:nth-child(2) { transition-delay: 0.15s; }
+.outer-nav.is-vis li:nth-child(3) { transition-delay: 0.2s; }
+.outer-nav.is-vis li:nth-child(4) { transition-delay: 0.25s; }
+.outer-nav.is-vis li:nth-child(5) { transition-delay: 0.3s; }
+.outer-nav.is-vis li:nth-child(6) { transition-delay: 0.35s; }
+.outer-nav.is-vis li:nth-child(7) { transition-delay: 0.4s; }
+.outer-nav.is-vis li:nth-child(8) { transition-delay: 0.45s; }
+
+.outer-nav li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+}
+
+.outer-nav li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(251, 153, 46, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.outer-nav li a:hover {
+  color: #fb992e;
+  background: rgba(251, 153, 46, 0.1);
+  border-color: rgba(251, 153, 46, 0.3);
+  transform: translateX(10px);
+  box-shadow: 0 5px 15px rgba(251, 153, 46, 0.2);
+}
+
+.outer-nav li a:hover::before {
+  left: 100%;
+}
+
+.outer-nav li.is-active a {
+  color: #fb992e;
+  background: rgba(251, 153, 46, 0.15);
+  border-color: rgba(251, 153, 46, 0.5);
+  box-shadow: 0 0 20px rgba(251, 153, 46, 0.3);
+  transform: translateX(10px);
+}
+
+.outer-nav li.is-active a::after {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #fb992e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(251, 153, 46, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(251, 153, 46, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(251, 153, 46, 0);
+  }
+}
+
+/* Кнопка закрытия меню */
+.outer-nav--return {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.outer-nav--return::before,
+.outer-nav--return::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: all 0.3s ease;
+}
+
+.outer-nav--return::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.outer-nav--return:hover::before,
+.outer-nav--return:hover::after {
+  background: #fb992e;
+  transform: translate(-50%, -50%) rotate(45deg) scale(1.1);
+}
+
+.outer-nav--return:hover::after {
+  transform: translate(-50%, -50%) rotate(-45deg) scale(1.1);
+}
+
+/* Оверлей для затемнения фона */
+.perspective--modalview::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(251, 153, 46, 0.1) 100%);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.perspective--modalview.effect-rotate-left--animate::before {
+  opacity: 1;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  .outer-nav {
+    width: 280px;
+    padding: 80px 25px 25px;
+  }
+
+  .outer-nav li a {
+    font-size: 16px;
+    padding: 12px 15px;
+  }
+
+  .outer-nav--return {
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .outer-nav {
+    width: 100%;
+    padding: 70px 20px 20px;
+  }
+
+  .outer-nav li a {
+    font-size: 15px;
+    padding: 10px 15px;
+  }
+
+  .outer-nav li {
+    margin-bottom: 10px;
+  }
+}
+
+/* Улучшенные стили для активного состояния секций */
+.l-section.section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.l-section.section--is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Дополнительные стили для кнопки открытия меню */
+.header--nav-toggle {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.header--nav-toggle:hover {
+  transform: scale(1.1);
+}
+
+.header--nav-toggle span {
+  transition: all 0.3s ease;
+}
+
+.header--nav-toggle:hover span {
+  background-color: #fb992e;
+}
