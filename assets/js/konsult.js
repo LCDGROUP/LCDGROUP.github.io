@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     async function sendConsultationRequest(name, telegram, phone, message) {
-        const botToken = BOT_TOKEN;
-        const chatIds = CHATIDS; // Массив chat_id админов
+        const botToken = '8538506020:AAFRaMdQBKChf2goFt3twYmYZwhBzy3TS_c';
+        const chatIds = ['511108569', '465139726']; // Массив chat_id админов
 
         const text = `
 <b>📌 Новая заявка на консультацию</b>
