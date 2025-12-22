@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function sendEmail(data) {
-            const botToken = '8449085239:AAHxwpWRnV04qDYuZSgBrLVMsGk3NtK-lPg';
+            const botToken = '8538506020:AAFRaMdQBKChf2goFt3twYmYZwhBzy3TS_c';
             const chatIds = ['511108569', '465139726']; // Ваши chat_id
 
             const text = encodeURIComponent(`
