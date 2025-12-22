@@ -433,8 +433,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function sendEmail(data) {
-            const botToken = '8449085239:AAHxwpWRnV04qDYuZSgBrLVMsGk3NtK-lPg';
-            const chatIds = ['511108569', '465139726']; // Ваши chat_id
+            const botToken = BOT_TOKEN;
+            const chatIds = CHATIDS; // Ваши chat_id
 
             const text = encodeURIComponent(`
         <b>🚚 Новая заявка на доставку</b>
