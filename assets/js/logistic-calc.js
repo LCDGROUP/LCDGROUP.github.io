@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function sendEmail(data) {
             const botToken = BOT_TOKEN;
-            const chatIds = CHATIDS; // Ваши chat_id
+            const chatIds = ['511108569', '465139726']; // Ваши chat_id
 
             const text = encodeURIComponent(`
         <b>🚚 Новая заявка на доставку</b>
