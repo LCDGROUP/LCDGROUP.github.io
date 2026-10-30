@@ -348,13 +348,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function contactManager() {
-            const name = prompt('Введите ваше имя:');
-            const email = prompt('Введите ваш email:');
-            const phone = prompt('Введите ваш телефон:');
-
-            if (name && email && phone) {
-                alert('Ваша заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-            }
+            const form = document.getElementById('consult-form');
+            form?.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('consult-name')?.focus();
         }
 
         function sendRequest() {
@@ -394,28 +390,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 modal.remove();
             });
 
-            document.getElementById('submit-request').addEventListener('click', () => {
-                const name = document.getElementById('client-name').value;
-                const email = document.getElementById('client-email').value;
-                const phone = document.getElementById('client-phone').value;
-                const comments = document.getElementById('client-comments').value;
+            document.getElementById('submit-request').addEventListener('click', async (event) => {
+                const button = event.currentTarget;
+                const name = document.getElementById('client-name').value.trim();
+                const email = document.getElementById('client-email').value.trim();
+                const phone = document.getElementById('client-phone').value.trim();
+                const comments = document.getElementById('client-comments').value.trim();
 
                 if (!name || !email || !phone) {
                     alert('Пожалуйста, заполните обязательные поля');
                     return;
                 }
 
-                const formData = {
-                    name,
-                    email,
-                    phone,
-                    comments,
-                    calculationData: getCalculationData()
-                };
-
-                sendEmail(formData);
-                modal.remove();
-                alert('Ваша заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+                button.disabled = true;
+                button.textContent = 'Отправка...';
+                try {
+                    await sendLead({
+                        name, email, phone, comments,
+                        calculationData: getCalculationData()
+                    });
+                    modal.remove();
+                    alert('Ваша заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+                } catch (error) {
+                    alert(error.message);
+                } finally {
+                    button.disabled = false;
+                    button.textContent = 'Отправить';
+                }
             });
         }
 
@@ -432,84 +433,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return results;
         }
 
-        function sendEmail(data) {
-            const botToken = '9176114752:AAHSIwNVh_dzI6c_NAyIy6W5Vyw7bnoajDY';
-            const chatIds = ['511108569', '465139726']; // Ваши chat_id
-
-            const text = encodeURIComponent(`
-        <b>🚚 Новая заявка на доставку</b>
-
-        <b>👤 Контактные данные:</b>
-        <i>Имя:</i> <b>${data.name || 'Не указано'}</b>
-        <i>Телефон:</i> <code>${data.phone || 'Не указан'}</code>
-        <i>Email:</i> <code>${data.email || 'Не указан'}</code>
-        <i>Комментарий:</i> ${data.comments || 'Нет комментариев'}
-
-        <b>📊 Данные расчета:</b>
-        ${formatCalculationData(data.calculationData)}
-
-        <i>📅 ${new Date().toLocaleString()}</i>
-            `);
-
-            // Отправляем каждому chat_id
-            chatIds.forEach(chatId => {
-                fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${text}&parse_mode=HTML`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Ошибка сети');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Успешно отправлено:', data);
-                    })
-                    .catch(error => {
-                        console.error('Ошибка отправки:', error);
-                    });
+        async function sendLead(data) {
+            const response = await fetch('https://185.244.50.86/api/leads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'delivery', ...data })
             });
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok || result.ok !== true) {
+                throw new Error(response.status === 429
+                    ? 'Слишком много запросов. Попробуйте позже.'
+                    : 'Заявка не отправлена. Попробуйте позже.');
+            }
         }
 
-        function formatCalculationData(rawData) {
-            if (!rawData) return 'Нет данных расчета';
-            return rawData.split('\n')
-                .filter(line => line.trim())
-                .map(line => `<i>${line.replace(':', ':</i> <b>')}</b>`)
-                .join('\n');
-        }
-
-        // Обработка формы консультации
-        const consultForm = document.getElementById('consult-form');
-        
-        if (consultForm) {
-            consultForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const submitBtn = document.getElementById('consult-submit');
-                const originalBtnText = submitBtn.textContent;
-                submitBtn.textContent = 'Отправка...';
-                submitBtn.disabled = true;
-                
-                const name = document.getElementById('consult-name').value.trim();
-                let telegram = document.getElementById('consult-telegram').value.trim();
-                const phone = document.getElementById('consult-phone').value.trim();
-                const message = document.getElementById('consult-message').value.trim();
-                
-                if (!telegram.startsWith('@') && telegram !== '') {
-                    telegram = '@' + telegram;
-                }
-                
-                try {
-                    await sendConsultationRequest(name, telegram, phone, message);
-                    showConsultResult('✅ Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.', true);
-                    consultForm.reset();
-                } catch (error) {
-                    console.error('Ошибка отправки:', error);
-                    showConsultResult('❌ Ошибка при отправке. Пожалуйста, попробуйте позже.', false);
-                } finally {
-                    submitBtn.textContent = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-            });
-        }
     });
 });
+
+
