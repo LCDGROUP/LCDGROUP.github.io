@@ -67,44 +67,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     async function sendConsultationRequest(name, telegram, phone, message) {
-        const botToken = '8538506020:AAFRaMdQBKChf2goFt3twYmYZwhBzy3TS_c';
-        const chatIds = ['511108569', '465139726']; // Массив chat_id админов
-
-        const text = `
-<b>📌 Новая заявка на консультацию</b>
-
-<b>👤 Имя:</b> ${name || 'Не указано'}
-<b>📱 Telegram:</b> ${telegram || 'Не указан'}
-<b>📞 Телефон:</b> ${phone || 'Не указан'}
-<b>💬 Вопрос:</b> ${message || 'Не указан'}
-
-<i>🕒 ${new Date().toLocaleString()}</i>
-        `;
-
-        // Отправляем каждому админу
-        for (const chatId of chatIds) {
-            try {
-                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: text,
-                        parse_mode: 'HTML',
-                        disable_web_page_preview: true
-                    })
-                });
-
-                const data = await response.json();
-                if (!data.ok) {
-                    throw new Error(data.description || 'Unknown Telegram API error');
-                }
-            } catch (error) {
-                console.error(`Ошибка отправки для chat_id ${chatId}:`, error);
-                throw error; // Пробрасываем ошибку дальше
-            }
+        const response = await fetch('https://185.244.50.86/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                type: 'consultation',
+                name, telegram, phone, message
+            })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.ok !== true) {
+            throw new Error(response.status === 429
+                ? 'Слишком много запросов. Попробуйте позже.'
+                : 'Заявка не отправлена. Попробуйте позже.');
         }
     }
 
@@ -130,3 +105,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
     }
 });
+
+
